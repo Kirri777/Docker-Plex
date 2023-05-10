@@ -1,4 +1,4 @@
-# Plex server with Nvidia device
+# Plex server with Trakt plugin + Nvidia device
 
 ## Links
 
@@ -92,3 +92,11 @@ For other OS you can get instruction on https://docs.nvidia.com/datacenter/cloud
 ## Installation Plugins
 
 New plugins you need insert to `/app/config/Library/Application Support/Plex Media Server/Plug-ins` folder.
+
+<br />
+
+## Configuration Trakt plugin
+
+Configure the plugin by clicking on the plugin settings button at Plex/Web -> Channels:
+
+Use this to help set up http://trakt-for-plex.github.io/configuration/#/connect
