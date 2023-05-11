@@ -26,7 +26,17 @@ services:
         - 32413:32413/udp
         - 32414:32414/udp
     volumes:
-      - ../app/config:/config
-      - ../app/transcode:/transcode
+      - ../app/plex/config:/config
+      - ../app/plex/transcode:/transcode
       - ../../../pliki/plex:/data
+    restart: unless-stopped
+
+  kitana:
+    image: pannal/kitana:latest
+    container_name: kitana
+    volumes:
+      - ../app/kitana/data:/app/data
+    ports:
+      - 31337:31337
+    command: -B 0.0.0.0:31337 -P
     restart: unless-stopped

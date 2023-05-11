@@ -1,8 +1,10 @@
-# Plex server with Trakt plugin + Nvidia device
+# Docker + Kitana + Plex server + Trakt plugin + Nvidia device
 
 ## Links
 
 http://127.0.0.1:32400/ - Plex
+
+http://127.0.0.1:31337/ - Kitana
 
 <br />
 
@@ -99,4 +101,4 @@ New plugins you need insert to `/app/config/Library/Application Support/Plex Med
 
 Configure the plugin by clicking on the plugin settings button at Plex/Web -> Channels:
 
-Use this to help set up http://trakt-for-plex.github.io/configuration/#/connect
+Use this to help set up http://trakt-for-plex.github.io/configuration/#/connect or Kitana page

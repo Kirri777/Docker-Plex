@@ -1,0 +1,23 @@
+# Ignore everything:
+*
+
+!Application Support/
+!Application Support/Plex Media Server/
+!Application Support/Plex Media Server/Plug-ins/
+!Application Support/Plex Media Server/Plug-ins/*
+!Application Support/Plex Media Server/Plug-ins/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*/*/*/*/*/*/*
+!Application Support/Plex Media Server/Plug-ins/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*
+
+!.gitignore
