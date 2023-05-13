@@ -1,4 +1,4 @@
-# Docker + Kitana + Plex server + Trakt plugin + Nvidia device
+# Docker + Kitana + Plex server + Trakt plugin + Nvidia device + Port Forward
 
 ## Links
 
@@ -76,7 +76,7 @@ For other OS you can get instruction on https://docs.nvidia.com/datacenter/cloud
 
 <br />
 
-## Installation
+## Installation Plex
 
 1. Download folder.
 
@@ -88,6 +88,11 @@ For other OS you can get instruction on https://docs.nvidia.com/datacenter/cloud
 4. Change `../../../pliki/plex:/data` to your path with files for plex.
 
 5. Go inside folder `./docker` and run `docker-compose up -d --build` to start containers.
+
+6. To get acces from other devices, you need change Settings / Network / List of IP addresses and networks that are allowed without auth to `192.168.1.1/255.255.255.0`
+
+    ![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/674aea0d-1a2b-425b-83f5-cc3dd56dc8f1)
+
 
 <br />
 
@@ -102,3 +107,42 @@ New plugins you need insert to `/app/config/Library/Application Support/Plex Med
 Configure the plugin by clicking on the plugin settings button at Plex/Web -> Channels:
 
 Use this to help set up http://trakt-for-plex.github.io/configuration/#/connect or Kitana page
+
+![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/40396799-8347-4226-908a-3e025c64ccad)
+![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/78cf427d-1d93-4deb-a635-fea2c806b42c)
+
+To add more tract account for home user, On the "Plex" authentication tab you need change to the "Home" mode:
+
+![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/fbabe9c5-6d59-4d47-8dc5-f3ffa34472f4)
+
+If new Plex Home User have updated you tract, you can exclude him in Trak module settings (Plex / Modules / Trakt.tv)
+
+![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/d1690dfd-b51a-47f8-81ec-f0848ecc701a)
+
+<br />
+
+## Port Forward
+
+https://portforward.com/router.htm - Guide for every one router
+
+https://canyouseeme.org/ - Check if your port is open
+
+### TP-Link Archer 6
+
+You need add Virtual server for plex (port need to be the same like in plex settings / remote)
+
+![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/f62dcd18-f943-453c-9ceb-8fc28d95e878)
+
+### Orange FunBox
+
+1. First you need set static ip address for router:
+
+    ![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/078c630a-9166-4afe-97e9-c77c48a377ca)
+    
+2. Nex you need add port forward on NAT/PAT tab:
+
+    ![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/e6893d3e-8545-444d-a86f-b796fbd5485c)
+
+
+
+
