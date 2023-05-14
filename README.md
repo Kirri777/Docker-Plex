@@ -109,6 +109,7 @@ Configure the plugin by clicking on the plugin settings button at Plex/Web -> Ch
 Use this to help set up http://trakt-for-plex.github.io/configuration/#/connect or Kitana page
 
 ![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/40396799-8347-4226-908a-3e025c64ccad)
+
 ![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/78cf427d-1d93-4deb-a635-fea2c806b42c)
 
 To add more tract account for home user, On the "Plex" authentication tab you need change to the "Home" mode:
@@ -144,5 +145,71 @@ You need add Virtual server for plex (port need to be the same like in plex sett
     ![image](https://github.com/Kirri777/Docker-Plex/assets/32429348/e6893d3e-8545-444d-a86f-b796fbd5485c)
 
 
+<br />
 
+## Plex Media Scanner via Command Line
 
+https://support.plex.tv/articles/201242707-plex-media-scanner-via-command-line/
+
+```
+Plex Media Scanner (c) 2010-2014 Plex Development Team.
+
+  -h, --help           Display this message.
+  -v, --verbose        Show more output.
+  -p, --progress       Show special progress output.
+  --log-file-suffix    Specify suffix for log file.
+
+ Actions:
+
+  -r, --refresh        Refresh the metadata.
+  -a, --analyze        Analyze media information.
+  --analyze-deeply     Fully read and perform deep media analysis.
+  -b, --index          Generate a media index file. (Video Preview Thumbnails)
+  -i, --info           Get information.
+  -l, --list           List.
+  -g, --generate       Regenerate thumbnails/fanart.
+  -t, --tree           Show a section tree.
+  -w, --reset          Delete all media out of a section.
+  -n, --add-section  --type <type:1,2,8> --agent  --location  --lang  Add a new section.
+  -D, --del-section    Delete a section.
+
+ Items to which actions apply:
+
+  -c, --section        A library section ID.
+  -o, --item           An item ID.
+  -d, --directory      A directory path.
+  -f, --file           A file.
+
+ Modifiers to actions:
+
+  -x, --force          Force an operation (e.g. refresh).
+  --no-thumbs          Do not regenerate thumbs when analyzing.
+  --chapter-thumbs-only   Only generate chapter thumbnails during generate pass
+  --thumbOffset  Percent offset into video for thumbnail image generated during media analysis.
+  --artOffset    Percent offset into video for fanart image generated during media analysis.
+  ```
+
+### Regerate all `Video Preview Thumbnails` for one library
+
+1. Check id of library section:
+
+    ```
+    "/usr/lib/plexmediaserver/Plex Media Scanner" --list
+    ```
+
+    This returns a list of Libraries and their ID:
+
+    ```
+    "/usr/lib/plexmediaserver/Plex Media Scanner" --list
+    29: Movies
+    31: Music
+    30: TV Shows
+   ```
+
+2. Run command:
+
+    ```
+    "/usr/lib/plexmediaserver/Plex Media Scanner" -c 1 -b
+    ```
+
+    Then you can check if plex started generate new thumbails on web panel.
