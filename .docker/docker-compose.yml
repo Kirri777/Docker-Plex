@@ -1,19 +1,28 @@
-version: "2.1"
+version: "3.8"
 
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
-    container_name: plex
+    # image: lscr.io/linuxserver/plex:1.32.6
+    container_name: Plex
     network_mode: host
     runtime: nvidia
-    # command: nvidia-smi
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities:
+    #           - gpu
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=${TIMEZONE}
       - VERSION=docker
+      # - VERSION=public
       - PLEX_CLAIM=${PLEX_CLAIM}
       - NVIDIA_VISIBLE_DEVICES=all
+      # - NVIDIA_DRIVER_CAPABILITIES=compute,video,utility
+      # - NVIDIA_DRIVER_CAPABILITIES=all
     ports:
         - 32400:32400
         - 3005:3005
@@ -28,12 +37,16 @@ services:
     volumes:
       - ../app/plex/config:/config
       - ../app/plex/transcode:/transcode
-      - ../../../pliki/plex:/data
+      - /mnt/pool1/pliki/plex:/data
+    # devices:
+    #   - /dev/nvidia0
+    #   - /dev/nvidiactl
+    #   - /dev/nvidia-uvm
     restart: unless-stopped
 
   kitana:
     image: pannal/kitana:latest
-    container_name: kitana
+    container_name: Kitana
     volumes:
       - ../app/kitana/data:/app/data
     ports:

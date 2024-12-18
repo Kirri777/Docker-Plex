@@ -15,42 +15,70 @@ For other OS you can get instruction on https://docs.nvidia.com/datacenter/cloud
 1. Setup the package repository and the GPG key:
 
     ```
-    distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
-        && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
-        && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
-                sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
-                sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+    curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+    && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
     ```
 
 2. Install the nvidia-container-toolkit package (and dependencies) after updating the package listing:
 
     ```
-    sudo apt-get update
-    ```
-
-    ```
-    sudo apt-get install -y nvidia-container-toolkit
+    apt-get update
+    apt-get install -y nvidia-container-toolkit
     ```
 
 3. Configure the Docker daemon to recognize the NVIDIA Container Runtime:
 
     ```
-    sudo nvidia-ctk runtime configure --runtime=docker
+    nvidia-ctk runtime configure --runtime=docker
     ```
 
 4. Restart the Docker daemon to complete the installation after setting the default runtime:
 
     ```
-    sudo systemctl restart docker
+    systemctl restart docker
     ```
 
-5. At this point, a working setup can be tested by running a base CUDA container:
+5. Add "contrib", "non-free" and "non-free-firmware" components to /etc/apt/sources.list, for example:
+
+    ```
+    # Debian Sid
+    deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware
+    ```
+
+6. Update the list of available packages, then we can install the nvidia-driver package:
+
+    ```
+    apt-get update
+    apt-get install nvidia-driver
+    ```
+
+7. Install wget and add-apt-repository:
+
+    ```
+    apt-get install wget apt-transport-https
+    ```
+
+8. Install cuda-drivers:
+
+    https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Debian&target_version=12&target_type=deb_network
+
+    ```
+    wget https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/cuda-keyring_1.1-1_all.deb
+    dpkg -i cuda-keyring_1.1-1_all.deb
+    add-apt-repository contrib
+    apt-get update
+    apt-get -y install cuda-toolkit-12-3 cuda-drivers
+    ```
+    
+9. At this point, a working setup can be tested by running a base CUDA container:
 
     ```
     sudo docker run --rm --runtime=nvidia --gpus all nvidia/cuda:11.6.2-base-ubuntu20.04 nvidia-smi
     ```
 
-6. This should result in a console output shown below:
+10. This should result in a console output shown below:
 
     ```
     +-----------------------------------------------------------------------------+
